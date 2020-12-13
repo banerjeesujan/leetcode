@@ -19,6 +19,5 @@ class Solution:
 
 
 A = 123443261
-A = 
 s = Solution()
 print(s.isPalindrome(A))
