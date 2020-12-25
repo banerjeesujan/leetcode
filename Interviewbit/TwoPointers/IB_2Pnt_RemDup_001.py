@@ -44,21 +44,29 @@ class Solution:
 
 
     def removeDuplicates2(self, A):
-        # This is incomplete
+        # A = [-3, -3, 3, 3, 3, 5, 9, 11, 11, 13]
+        if len(A) < 2:
+            return len(A)
         for i in range(len(A) - 1):
-            print(i)
-            lo = i + 1
-            if A[i] <= A[lo]:
-                hi = lo + 1
-                while hi < len(A):
-                    print(lo, hi, A)
-                    if A[hi] <= A[i]:
-                        hi += 1
-                    else:
-                        A[lo], A[hi] = A[hi], A[lo]
+            print(A)
+            if A[i] >= A[i + 1]:
+                lo = i + 1
+                swapped = False
+                while lo < len(A):
+                    if A[lo] > A[i]:
+                        A[lo], A[i + 1] = A[i + 1], A[lo]
+                        swapped = True
                         break
+                    else:
+                        lo = lo + 1
 
-        return A
+                if not swapped:
+                    break
+        for i in range(len(A) - 1):
+            if A[i] >= A[i + 1]:
+                return i + 1
+
+        return i + 2
 
 
 # A = [-3, -3, 3, 3, 3, 5, 9, 11, 11, 13]
@@ -69,5 +77,6 @@ class Solution:
 # A = [1, 2, 3]
 # A = [1, 2, 3, 3, 3]
 A = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+# A = [-3, -3, 3, 3, 3, 5, 9, 11, 11, 13]
 s = Solution()
-print(s.removeDuplicates(A))
+print(s.removeDuplicates2(A))
